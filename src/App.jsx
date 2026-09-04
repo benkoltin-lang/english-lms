@@ -5,7 +5,6 @@ import StudentDashboard from './components/student/StudentDashboard.jsx'
 import LessonView from './components/student/LessonView.jsx'
 import ActivitySolver from './components/student/ActivitySolver.jsx'
 import AssessmentView from './components/student/AssessmentView.jsx'
-import { buildDemoData } from './data/demoData.js'
 
 const TEACHER_PASSWORD = 'admin2024' // ⚠️ مؤقت فقط لتجربة الهيكل - يُستبدل لاحقاً بنظام حقيقي
 
@@ -86,29 +85,7 @@ function App() {
     setData(prev => ({ ...prev, results: [...prev.results, saved] }))
   }
 
-  const seedDemoData = async () => {
-    try {
-      const { student, lesson, questions, assessment } = buildDemoData()
-      const savedStudent = await db.students.add(student)
-      const savedLesson = await db.lessons.add(lesson)
-      const savedQuestions = []
-      for (const q of questions) {
-        savedQuestions.push(await db.questions.add({ ...q, lessonId: savedLesson.id }))
-      }
-      const savedAssessment = await db.assessments.add(assessment)
-      setData(prev => ({
-        ...prev,
-        students: [...prev.students, savedStudent],
-        lessons: [...prev.lessons, savedLesson],
-        questions: [...prev.questions, ...savedQuestions],
-        assessments: [...prev.assessments, savedAssessment]
-      }))
-      alert('✅ تمت تعبئة بيانات تجريبية!\nسجّل دخول بـ: test / 123')
-    } catch (err) {
-      alert('❌ خطأ: ' + err.message)
-    }
-  }
-
+  
   if (loading) {
     return <div className="app"><main className="main"><p className="empty">⏳ جارٍ تحميل البيانات...</p></main></div>
   }
@@ -206,13 +183,10 @@ function App() {
             <button type="submit" className="btn-primary">دخول</button>
           </form>
 
-          <div className="test-box" style={{ marginTop: '25px', padding: '20px', background: '#e8f4f8', borderRadius: '12px', border: '2px solid #bee5eb' }}>
-            <h3 style={{ marginBottom: '10px', color: '#0c5460' }}>🧪 تجربة سريعة</h3>
-            <p style={{ marginBottom: '12px', fontSize: '14px' }}>
-              عبّئ درساً + أسئلة + فرضاً + تلميذاً تجريبياً دفعة واحدة، لتجربة الموقع بالكامل فوراً.
-            </p>
-            <button className="btn-success" onClick={seedDemoData}>➕ تعبئة بيانات تجريبية</button>
-          </div>
+          <div style={{ marginTop: '20px', padding: '15px', background: '#f0f4ff', borderRadius: '10px', textAlign: 'center', color: '#6a4c93' }}>
+    <p style={{ fontSize: '14px', margin: 0 }}>📚 السنة الدراسية 2026/2027</p>
+    <p style={{ fontSize: '13px', margin: '5px 0 0', color: '#888' }}>للتلاميذ المسجلين فقط - راجع أستاذك للحصول على اسم المستخدم وكلمة المرور</p>
+  </div>
         </div>
       </main>
     </div>
