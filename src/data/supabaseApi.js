@@ -17,7 +17,7 @@ const studentToDb = (s) => ({
 const lessonFromDb = (r) => ({
   id: r.id, level: r.level, term: r.term, sequence: r.sequence, title: r.title,
   content: r.content, videoUrl: r.video_url, images: r.images || [],
-  order: r.order_num, isActive: r.is_active
+  order: r.order_num, isActive: r.is_active, vocabHelp: r.vocab_help || []
 })
 const lessonToDb = (l) => ({
   level: l.level, term: l.term, sequence: l.sequence, title: l.title, content: l.content,
