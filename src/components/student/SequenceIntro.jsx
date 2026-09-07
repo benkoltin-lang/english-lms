@@ -1,12 +1,13 @@
-export default function SequenceIntro({ onStart }) {
+export default function SequenceIntro({ onStart, student }) {
+  const is3MS = student && student.level === "3MS"
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       
       {/* العنوان */}
       <div style={{ background: 'linear-gradient(135deg, #6a4c93, #9b59b6)', borderRadius: '15px', padding: '20px', textAlign: 'center', color: 'white', marginBottom: '20px' }}>
         <h1 style={{ margin: 0, fontSize: '20px' }}>📚 Sequence 01</h1>
-        <p style={{ margin: '8px 0 0', fontSize: '14px', opacity: 0.9 }}>Me, Universal Landmarks & Outstanding Figures</p>
-        <p style={{ margin: '4px 0 0', fontSize: '12px', opacity: 0.8 }}>in History, Literature & Arts</p>
+        <p style={{ margin: '8px 0 0', fontSize: '14px', opacity: 0.9 }}>{is3MS ? "Me, My Abilities, My Interests, and My Personality" : "Me, Universal Landmarks & Outstanding Figures"}</p>
+        <p style={{ margin: '4px 0 0', fontSize: '12px', opacity: 0.8 }}>{is3MS ? "3ème Année Moyenne" : "in History, Literature & Arts"}</p>
       </div>
 
       {/* الوضعية الانطلاقية */}

@@ -17,7 +17,7 @@ export default function StudentDashboard({ data, student, onOpenLesson, onOpenAs
     graded: '✅ تم التصحيح', returned: '↩️ تم الإرجاع'
   }
 
-  if (showIntro) return <SequenceIntro onStart={() => setShowIntro(false)} />
+  if (showIntro) return <SequenceIntro onStart={() => setShowIntro(false)} student={student} />
 
   return (
     <div className="app">
