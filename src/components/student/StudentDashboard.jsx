@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SequenceIntro from './SequenceIntro.jsx'
+import SequenceIntro3MS from './SequenceIntro3MS.jsx'
 export default function StudentDashboard({ data, student, onOpenLesson, onOpenAssessment, onLogout }) {
   const [showIntro, setShowIntro] = useState(true)
   const lessons = data.lessons.filter(
@@ -17,6 +18,7 @@ export default function StudentDashboard({ data, student, onOpenLesson, onOpenAs
     graded: '✅ تم التصحيح', returned: '↩️ تم الإرجاع'
   }
 
+  if (showIntro && student.level === '3MS') return <SequenceIntro3MS onStart={() => setShowIntro(false)} />
   if (showIntro) return <SequenceIntro onStart={() => setShowIntro(false)} student={student} />
 
   return (
