@@ -9,7 +9,7 @@ import AssessmentView from './components/student/AssessmentView.jsx'
 const TEACHER_PASSWORD = 'admin2024' // ⚠️ مؤقت فقط لتجربة الهيكل - يُستبدل لاحقاً بنظام حقيقي
 
 function App() {
-  const isAdminRoute = window.location.pathname === '/admin'
+  const isAdminRoute = window.location.search.includes('admin=true') || window.location.pathname === '/admin'
 
   const [data, setData] = useState({ students: [], lessons: [], questions: [], assessments: [], submissions: [], results: [] })
   const [loading, setLoading] = useState(true)
